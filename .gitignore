@@ -112,3 +112,227 @@ InitTestScene*.unity*
 
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
+
+# Pacotes de terceiros: so vai para o Git o que as cenas usam
+# (gerado a partir das dependencias de Feira.unity e Menu.unity; scripts sempre incluidos).
+/Assets/FlipGameDev/**
+!/Assets/FlipGameDev/**/
+/Assets/Starter Assets/**
+!/Assets/Starter Assets/**/
+/Assets/NekoLegends/**
+!/Assets/NekoLegends/**/
+/Assets/Coconut Palm Tree Pack/**
+!/Assets/Coconut Palm Tree Pack/**/
+/Assets/PolygonPi/**
+!/Assets/PolygonPi/**/
+/Assets/PolyRonin/**
+!/Assets/PolyRonin/**/
+/Assets/JusticeScale/**
+!/Assets/JusticeScale/**/
+/Assets/Game Assets/**
+!/Assets/Game Assets/**/
+!/Assets/Coconut Palm Tree Pack/Materials.meta
+!/Assets/Coconut Palm Tree Pack/Materials/Coconut_Palm_Tree_normalspec.mat
+!/Assets/Coconut Palm Tree Pack/Materials/Coconut_Palm_Tree_normalspec.mat.meta
+!/Assets/Coconut Palm Tree Pack/Models.meta
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree01_AFS.asset
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree01_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Textures.meta
+!/Assets/Coconut Palm Tree Pack/Textures/Coconut_Palm_Tree_diffuse.psd
+!/Assets/Coconut Palm Tree Pack/Textures/Coconut_Palm_Tree_diffuse.psd.meta
+!/Assets/FlipGameDev/Terrain&GrassPack.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Art.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Grass_AlbedoTransparency.png
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Grass_AlbedoTransparency.png.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Materials.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Materials/Grass_AlbedoTransparency.mat
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Materials/Grass_AlbedoTransparency.mat.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/DayNightBrain.cs
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/DayNightBrain.cs.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/DayNightState.cs
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/DayNightState.cs.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/IDayNightModule.cs
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/IDayNightModule.cs.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/Modules.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/Modules/CelestialRotationModule.cs
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/Modules/CelestialRotationModule.cs.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/Modules/CelestialVisualsModule.cs
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/Modules/CelestialVisualsModule.cs.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/Modules/EnvironmentLightingModule.cs
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/Modules/EnvironmentLightingModule.cs.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/Modules/TimeProgressionModule.cs
+!/Assets/FlipGameDev/Terrain&GrassPack/Scripts/Modules/TimeProgressionModule.cs.meta
+!/Assets/Game Assets/Aegis77.meta
+!/Assets/Game Assets/Aegis77/Low Poly Wooden Crate.meta
+!/Assets/Game Assets/Aegis77/Low Poly Wooden Crate/Materials.meta
+!/Assets/Game Assets/Aegis77/Low Poly Wooden Crate/Materials/Wooden Crate.physicMaterial
+!/Assets/Game Assets/Aegis77/Low Poly Wooden Crate/Materials/Wooden Crate.physicMaterial.meta
+!/Assets/JusticeScale/Demo.meta
+!/Assets/JusticeScale/Demo/Scripts.meta
+!/Assets/JusticeScale/Demo/Scripts/ClickAndClone.cs
+!/Assets/JusticeScale/Demo/Scripts/ClickAndClone.cs.meta
+!/Assets/JusticeScale/Demo/Scripts/DestroyObjects.cs
+!/Assets/JusticeScale/Demo/Scripts/DestroyObjects.cs.meta
+!/Assets/JusticeScale/Demo/Scripts/DragAndDrop.cs
+!/Assets/JusticeScale/Demo/Scripts/DragAndDrop.cs.meta
+!/Assets/JusticeScale/Demo/Scripts/SliderWeight.cs
+!/Assets/JusticeScale/Demo/Scripts/SliderWeight.cs.meta
+!/Assets/JusticeScale/Materials.meta
+!/Assets/JusticeScale/Materials/Scale Material.mat
+!/Assets/JusticeScale/Materials/Scale Material.mat.meta
+!/Assets/JusticeScale/Materials/ScaleAlbedo.mat
+!/Assets/JusticeScale/Materials/ScaleAlbedo.mat.meta
+!/Assets/JusticeScale/Models.meta
+!/Assets/JusticeScale/Models/Scale.fbx
+!/Assets/JusticeScale/Models/Scale.fbx.meta
+!/Assets/JusticeScale/Scripts.meta
+!/Assets/JusticeScale/Scripts/ScaleBeamRotation.cs
+!/Assets/JusticeScale/Scripts/ScaleBeamRotation.cs.meta
+!/Assets/JusticeScale/Scripts/ScaleController.cs
+!/Assets/JusticeScale/Scripts/ScaleController.cs.meta
+!/Assets/JusticeScale/Scripts/Scales.meta
+!/Assets/JusticeScale/Scripts/Scales/OverlapScale.cs
+!/Assets/JusticeScale/Scripts/Scales/OverlapScale.cs.meta
+!/Assets/JusticeScale/Scripts/Scales/Scale.cs
+!/Assets/JusticeScale/Scripts/Scales/Scale.cs.meta
+!/Assets/JusticeScale/Scripts/Scales/TriggerScale.cs
+!/Assets/JusticeScale/Scripts/Scales/TriggerScale.cs.meta
+!/Assets/JusticeScale/Scripts/UI.meta
+!/Assets/JusticeScale/Scripts/UI/ScaleUI.cs
+!/Assets/JusticeScale/Scripts/UI/ScaleUI.cs.meta
+!/Assets/JusticeScale/Textures.meta
+!/Assets/JusticeScale/Textures/ScaleAlbedo.png
+!/Assets/JusticeScale/Textures/ScaleAlbedo.png.meta
+!/Assets/NekoLegends/Food.meta
+!/Assets/NekoLegends/Food/Fruits.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/Materials.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/Materials/pineapple 1.mat
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/Materials/pineapple 1.mat.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/apple.mat
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/apple.mat.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/apple.png
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/apple.png.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/banana.mat
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/banana.mat.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/banana.png
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/banana.png.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/cherry.mat
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/cherry.mat.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/cherry.png
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/cherry.png.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/dragonfruit.mat
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/dragonfruit.mat.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/dragonfruit.png
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/dragonfruit.png.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/grapes.mat
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/grapes.mat.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/grapes.png
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/grapes.png.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/pineapple.mat
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/pineapple.mat.meta
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/pineapple.png
+!/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures/pineapple.png.meta
+!/Assets/NekoLegends/Food/Fruits/Models.meta
+!/Assets/NekoLegends/Food/Fruits/Models/apple.fbx
+!/Assets/NekoLegends/Food/Fruits/Models/apple.fbx.meta
+!/Assets/NekoLegends/Food/Fruits/Models/banana.fbx
+!/Assets/NekoLegends/Food/Fruits/Models/banana.fbx.meta
+!/Assets/NekoLegends/Food/Fruits/Models/cherry.fbx
+!/Assets/NekoLegends/Food/Fruits/Models/cherry.fbx.meta
+!/Assets/NekoLegends/Food/Fruits/Models/dragonfruitHQ.fbx
+!/Assets/NekoLegends/Food/Fruits/Models/dragonfruitHQ.fbx.meta
+!/Assets/NekoLegends/Food/Fruits/Models/grapes.fbx
+!/Assets/NekoLegends/Food/Fruits/Models/grapes.fbx.meta
+!/Assets/NekoLegends/Food/Fruits/Models/pineapple.fbx
+!/Assets/NekoLegends/Food/Fruits/Models/pineapple.fbx.meta
+!/Assets/NekoLegends/Food/Fruits/Prefabs.meta
+!/Assets/NekoLegends/Food/Fruits/Prefabs/banana.prefab
+!/Assets/NekoLegends/Food/Fruits/Prefabs/banana.prefab.meta
+!/Assets/NekoLegends/Food/Fruits/Prefabs/cherry.prefab
+!/Assets/NekoLegends/Food/Fruits/Prefabs/cherry.prefab.meta
+!/Assets/NekoLegends/Food/Fruits/Prefabs/dragonfruit.prefab
+!/Assets/NekoLegends/Food/Fruits/Prefabs/dragonfruit.prefab.meta
+!/Assets/NekoLegends/Food/Fruits/Prefabs/grapes.prefab
+!/Assets/NekoLegends/Food/Fruits/Prefabs/grapes.prefab.meta
+!/Assets/PolyRonin/Medieval Market Stalls.meta
+!/Assets/PolyRonin/Medieval Market Stalls/Materials.meta
+!/Assets/PolyRonin/Medieval Market Stalls/Materials/market-stalls-colors.mat
+!/Assets/PolyRonin/Medieval Market Stalls/Materials/market-stalls-colors.mat.meta
+!/Assets/PolyRonin/Medieval Market Stalls/Meshes.meta
+!/Assets/PolyRonin/Medieval Market Stalls/Meshes/medieval-market-stalls-1.fbx
+!/Assets/PolyRonin/Medieval Market Stalls/Meshes/medieval-market-stalls-1.fbx.meta
+!/Assets/PolyRonin/Medieval Market Stalls/Textures.meta
+!/Assets/PolyRonin/Medieval Market Stalls/Textures/market-stalls-colors.png
+!/Assets/PolyRonin/Medieval Market Stalls/Textures/market-stalls-colors.png.meta
+!/Assets/PolygonPi/FenceLayout.meta
+!/Assets/PolygonPi/FenceLayout/Editor.meta
+!/Assets/PolygonPi/FenceLayout/Editor/FenceLayoutEditor.cs
+!/Assets/PolygonPi/FenceLayout/Editor/FenceLayoutEditor.cs.meta
+!/Assets/PolygonPi/FenceLayout/Example.meta
+!/Assets/PolygonPi/FenceLayout/Example/FencePanel.prefab
+!/Assets/PolygonPi/FenceLayout/Example/FencePanel.prefab.meta
+!/Assets/PolygonPi/FenceLayout/Example/FencePost.prefab
+!/Assets/PolygonPi/FenceLayout/Example/FencePost.prefab.meta
+!/Assets/PolygonPi/FenceLayout/Example/WoodMat.mat
+!/Assets/PolygonPi/FenceLayout/Example/WoodMat.mat.meta
+!/Assets/PolygonPi/FenceLayout/Example/wood.png
+!/Assets/PolygonPi/FenceLayout/Example/wood.png.meta
+!/Assets/PolygonPi/FenceLayout/FenceLayout.cs
+!/Assets/PolygonPi/FenceLayout/FenceLayout.cs.meta
+!/Assets/Starter Assets/Editor.meta
+!/Assets/Starter Assets/Editor/StarterAssetsDeployMenu.cs
+!/Assets/Starter Assets/Editor/StarterAssetsDeployMenu.cs.meta
+!/Assets/Starter Assets/Editor/ThirdPersonStarterAssetsDeployMenu.cs
+!/Assets/Starter Assets/Editor/ThirdPersonStarterAssetsDeployMenu.cs.meta
+!/Assets/Starter Assets/Editor/URPWizard.meta
+!/Assets/Starter Assets/Editor/URPWizard/URPWizard.asmdef
+!/Assets/Starter Assets/Editor/URPWizard/URPWizard.asmdef.meta
+!/Assets/Starter Assets/Editor/URPWizard/URPWizard.cs
+!/Assets/Starter Assets/Editor/URPWizard/URPWizard.cs.meta
+!/Assets/Starter Assets/Editor/Unity.StartAssets.Editor.asmdef
+!/Assets/Starter Assets/Editor/Unity.StartAssets.Editor.asmdef.meta
+!/Assets/Starter Assets/Runtime.meta
+!/Assets/Starter Assets/Runtime/Common.meta
+!/Assets/Starter Assets/Runtime/Common/BasicRigidBodyPush.cs
+!/Assets/Starter Assets/Runtime/Common/BasicRigidBodyPush.cs.meta
+!/Assets/Starter Assets/Runtime/FirstPersonController.meta
+!/Assets/Starter Assets/Runtime/FirstPersonController/Prefabs.meta
+!/Assets/Starter Assets/Runtime/FirstPersonController/Prefabs/MainCamera.prefab
+!/Assets/Starter Assets/Runtime/FirstPersonController/Prefabs/MainCamera.prefab.meta
+!/Assets/Starter Assets/Runtime/FirstPersonController/Prefabs/PlayerCapsule.prefab
+!/Assets/Starter Assets/Runtime/FirstPersonController/Prefabs/PlayerCapsule.prefab.meta
+!/Assets/Starter Assets/Runtime/FirstPersonController/Prefabs/PlayerFollowCamera.prefab
+!/Assets/Starter Assets/Runtime/FirstPersonController/Prefabs/PlayerFollowCamera.prefab.meta
+!/Assets/Starter Assets/Runtime/FirstPersonController/Scripts.meta
+!/Assets/Starter Assets/Runtime/FirstPersonController/Scripts/FirstPersonController.cs
+!/Assets/Starter Assets/Runtime/FirstPersonController/Scripts/FirstPersonController.cs.meta
+!/Assets/Starter Assets/Runtime/InputSystem.meta
+!/Assets/Starter Assets/Runtime/InputSystem/StarterAssets.inputactions
+!/Assets/Starter Assets/Runtime/InputSystem/StarterAssets.inputactions.meta
+!/Assets/Starter Assets/Runtime/InputSystem/StarterAssetsInputs.cs
+!/Assets/Starter Assets/Runtime/InputSystem/StarterAssetsInputs.cs.meta
+!/Assets/Starter Assets/Runtime/Mobile.meta
+!/Assets/Starter Assets/Runtime/Mobile/Scripts.meta
+!/Assets/Starter Assets/Runtime/Mobile/Scripts/TouchscreenInput.cs
+!/Assets/Starter Assets/Runtime/Mobile/Scripts/TouchscreenInput.cs.meta
+!/Assets/Starter Assets/Runtime/Mobile/Scripts/Utilities.meta
+!/Assets/Starter Assets/Runtime/Mobile/Scripts/Utilities/MobileDisableAutoSwitchControls.cs
+!/Assets/Starter Assets/Runtime/Mobile/Scripts/Utilities/MobileDisableAutoSwitchControls.cs.meta
+!/Assets/Starter Assets/Runtime/Mobile/Scripts/VirtualInput.cs
+!/Assets/Starter Assets/Runtime/Mobile/Scripts/VirtualInput.cs.meta
+!/Assets/Starter Assets/Runtime/ThirdPersonController.meta
+!/Assets/Starter Assets/Runtime/ThirdPersonController/Scripts.meta
+!/Assets/Starter Assets/Runtime/ThirdPersonController/Scripts/ThirdPersonController.cs
+!/Assets/Starter Assets/Runtime/ThirdPersonController/Scripts/ThirdPersonController.cs.meta
+!/Assets/Starter Assets/Runtime/Unity.StarterAssets.asmdef
+!/Assets/Starter Assets/Runtime/Unity.StarterAssets.asmdef.meta
+!/Assets/Starter Assets/Sample.meta
+!/Assets/Starter Assets/Sample/Environment.meta
+!/Assets/Starter Assets/Sample/Environment/Art.meta
+!/Assets/Starter Assets/Sample/Environment/Art/Materials.meta
+!/Assets/Starter Assets/Sample/Environment/Art/Materials/GreyBlue_Mat.mat
+!/Assets/Starter Assets/Sample/Environment/Art/Materials/GreyBlue_Mat.mat.meta
