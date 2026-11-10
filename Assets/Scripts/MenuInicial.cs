@@ -40,6 +40,9 @@ public class MenuInicial : MonoBehaviour
 
     public void Comecar()
     {
+        // Prende e esconde o mouse para o jogo em primeira pessoa
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         SceneManager.LoadScene(cenaDoJogo);
     }
 

@@ -35,8 +35,12 @@ public class GameManager : MonoBehaviour
     public float duracaoGiro = 1.5f;
 
     [Header("Som de vitória (opcional)")]
+    [Tooltip("O mesmo Audio Source que toca a música da feira")]
     public AudioSource audioSource;
+    [Tooltip("Música ou som de fim: substitui a música da feira quando o jogo é concluído")]
     public AudioClip somVitoria;
+    [Tooltip("Marcado: a música de fim fica repetindo até o jogador sair ou recomeçar")]
+    public bool repetirMusicaFinal = false;
 
     [Tooltip("Outras ações ao abrir a feira")]
     public UnityEvent aoAbrirFeira;
@@ -85,7 +89,14 @@ public class GameManager : MonoBehaviour
         if (placaFechada != null) placaFechada.SetActive(false);
         if (placaAberta != null) placaAberta.SetActive(true);
         if (painelParabens != null) Invoke(nameof(MostrarParabens), atrasoParabens);
-        if (audioSource != null && somVitoria != null) audioSource.PlayOneShot(somVitoria);
+        // Para a música da feira e toca a música de fim no lugar
+        if (audioSource != null && somVitoria != null)
+        {
+            audioSource.Stop();
+            audioSource.clip = somVitoria;
+            audioSource.loop = repetirMusicaFinal;
+            audioSource.Play();
+        }
 
         aoAbrirFeira.Invoke();
     }

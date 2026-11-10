@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 // Coloque este script no PlayerCapsule.
 // O jogador mira num abacaxi (centro da tela), aperta E para pegar,
-// e aperta E de novo para soltar. Mirando num botão (ex.: "Verificar"),
+// e aperta E de novo para soltar (o clique esquerdo do mouse faz o mesmo). Mirando num botão (ex.: "Verificar"),
 // o E aciona o botão.
 public class PegarObjeto : MonoBehaviour
 {
@@ -15,6 +15,8 @@ public class PegarObjeto : MonoBehaviour
     public float forca = 15f;
     [Tooltip("Tecla para pegar e soltar")]
     public Key tecla = Key.E;
+    [Tooltip("Marcado: o clique esquerdo do mouse também pega, solta e aperta botões")]
+    public bool usarCliqueDoMouse = true;
     [Tooltip("Distância máxima para acionar um botão com a mira")]
     public float alcanceBotao = 6f;
 
@@ -34,7 +36,12 @@ public class PegarObjeto : MonoBehaviour
     {
         if (Keyboard.current == null) return;
 
-        if (Keyboard.current[tecla].wasPressedThisFrame)
+        // Tecla E ou clique esquerdo do mouse fazem a mesma ação
+        bool apertouTecla = Keyboard.current[tecla].wasPressedThisFrame;
+        bool clicouMouse = usarCliqueDoMouse && Mouse.current != null
+                           && Mouse.current.leftButton.wasPressedThisFrame;
+
+        if (apertouTecla || clicouMouse)
         {
             if (segurado != null) Soltar();
             else if (!TentarClicarBotao()) TentarPegar(); // botão na mira? senão, tenta pegar
