@@ -1592,7 +1592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Bem-vindo \xE0 feira!\nA balan\xE7a principal quebrou e a feira n\xE3o pode abrir. Equilibre as tr\xEAs balan\xE7as reservas usando abacaxis de pesos diferentes. Cada balan\xE7a certa libera a pr\xF3xima. Quando as tr\xEAs estiverem equilibradas, a feira abre!\n\nCada balan\xE7a precisa ser equilibrada com o valor correspondente ao que est\xE1 descrito em sua barraca. Use sua criatividade. Ap\xF3s posicionar os abacaxis no prato direito da balan\xE7a, clique no bot\xE3o VERIFICAR.\n\nControles: W, A, S, D para andar \xB7 Mouse para olhar \xB7 Shift para correr \xB7 E para pegar e soltar abacaxis e para apertar o bot\xE3o \u201CVerificar\u201D"
+  m_text: "Bem-vindo \xE0 feira!\nA balan\xE7a principal quebrou e a feira n\xE3o pode abrir. Equilibre as tr\xEAs balan\xE7as reservas usando abacaxis de pesos diferentes. Cada balan\xE7a certa libera a pr\xF3xima. Quando as tr\xEAs estiverem equilibradas, a feira abre!\n\nCada balan\xE7a precisa ser equilibrada com o valor correspondente ao que est\xE1 descrito em sua barraca. Ap\xF3s posicionar os abacaxis no prato DIREITO da balan\xE7a, clique no bot\xE3o VERIFICAR.\n\nControles: W, A, S, D para andar \xB7 Mouse para olhar \xB7 Shift para correr \xB7 E / clique com bot\xE3o esquerdo para pegar e soltar abacaxis e para apertar o bot\xE3o \u201CVerificar\u201D \xB7 ESC para sair"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
