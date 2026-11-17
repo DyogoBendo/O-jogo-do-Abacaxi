@@ -1,16 +1,21 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
 // Coloque este script num objeto vazio chamado "GameManager".
-// Ele libera as balanças em ordem (a 2 só depois da 1, a 3 só depois da 2)
-// e abre a feira quando todas estiverem concluídas.
+// Ele acompanha as barracas (em qualquer ordem) e abre a feira
+// quando todas estiverem completas.
 public class GameManager : MonoBehaviour
 {
     public static GameManager instancia;
 
-    [Tooltip("As balanças na ordem do jogo: Balança 1, Balança 2, Balança 3 (arraste os objetos Scale)")]
-    public BalancaController[] balancas;
+    [Tooltip("Todas as barracas do jogo, em qualquer ordem (arraste as áreas com o script Barraca)")]
+    public Barraca[] barracas;
+
+    [Tooltip("Opcional: texto que mostra o progresso (ex.: \"Barracas completas: 2 de 4\")")]
+    public TMP_Text textoProgresso;
 
     [Header("Final")]
     [Tooltip("O portão que abre no final")]
@@ -23,6 +28,8 @@ public class GameManager : MonoBehaviour
     public GameObject painelParabens;
     [Tooltip("Segundos de espera, depois da feira abrir, até mostrar o painel de parabéns")]
     public float atrasoParabens = 10f;
+    [Tooltip("Objetos que somem da tela quando o portão abre (ex.: o texto de Controles)")]
+    public GameObject[] esconderAoAbrir;
 
     [Header("Virar o jogador para o portão (opcional)")]
     [Tooltip("Arraste o PlayerCapsule")]
@@ -45,7 +52,7 @@ public class GameManager : MonoBehaviour
     [Tooltip("Outras ações ao abrir a feira")]
     public UnityEvent aoAbrirFeira;
 
-    int concluidas;
+    readonly HashSet<Barraca> concluidas = new HashSet<Barraca>();
     bool feiraAberta;
 
     public bool FeiraAberta => feiraAberta;
@@ -57,32 +64,37 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        // Só a primeira balança começa liberada
-        for (int i = 0; i < balancas.Length; i++)
-            if (balancas[i] != null) balancas[i].Liberar(i == 0);
+        AtualizarProgresso();
 
         if (placaFechada != null) placaFechada.SetActive(true);
         if (placaAberta != null) placaAberta.SetActive(false);
         if (painelParabens != null) painelParabens.SetActive(false);
     }
 
-    // Chamado pela balança quando o jogador acerta
-    public void BalancaConcluida(BalancaController balanca)
+    // Chamado pela barraca quando o jogador a completa
+    public void BarracaConcluida(Barraca barraca)
     {
-        concluidas++;
+        if (!concluidas.Add(barraca)) return; // já contada
+        AtualizarProgresso();
 
-        // Libera a próxima balança da lista
-        int indice = System.Array.IndexOf(balancas, balanca);
-        if (indice >= 0 && indice + 1 < balancas.Length && balancas[indice + 1] != null)
-            balancas[indice + 1].Liberar(true);
-
-        if (concluidas >= balancas.Length && !feiraAberta)
+        if (concluidas.Count >= barracas.Length && !feiraAberta)
             AbrirFeira();
+    }
+
+    void AtualizarProgresso()
+    {
+        if (textoProgresso != null)
+            textoProgresso.text = "Barracas completas: " + concluidas.Count + " de " + barracas.Length;
     }
 
     void AbrirFeira()
     {
         feiraAberta = true;
+
+        // Tira da tela o que não é mais necessário (ex.: os controles)
+        if (esconderAoAbrir != null)
+            foreach (var objeto in esconderAoAbrir)
+                if (objeto != null) objeto.SetActive(false);
 
         // Vira o jogador para o portão e só então abre a porta
         StartCoroutine(VirarEAbrir());

@@ -113,8 +113,13 @@ InitTestScene*.unity*
 # Auto-generated cache in Assets folder
 /[Aa]ssets/[Ss]ceneDependencyCache*
 
+# Cenas de recuperacao do Unity e arquivos de apoio do Claude
+/[Aa]ssets/_Recovery/
+/[Aa]ssets/_Recovery.meta
+/Claude outputs/
+
 # Pacotes de terceiros: so vai para o Git o que as cenas usam
-# (gerado a partir das dependencias de Feira.unity e Menu.unity; scripts sempre incluidos).
+# (gerado a partir das dependencias das cenas, scripts e prefabs do projeto; scripts dos pacotes sempre incluidos).
 /Assets/FlipGameDev/**
 !/Assets/FlipGameDev/**/
 /Assets/Starter Assets/**
@@ -131,13 +136,65 @@ InitTestScene*.unity*
 !/Assets/JusticeScale/**/
 /Assets/Game Assets/**
 !/Assets/Game Assets/**/
+/Assets/Christmas pack/**
+!/Assets/Christmas pack/**/
+/Assets/Stylized NPC - Peasant Nolant/**
+!/Assets/Stylized NPC - Peasant Nolant/**/
 !/Assets/Coconut Palm Tree Pack/Materials.meta
+!/Assets/Coconut Palm Tree Pack/Materials/Coconut_Palm_Tree_AFS.mat
+!/Assets/Coconut Palm Tree Pack/Materials/Coconut_Palm_Tree_AFS.mat.meta
 !/Assets/Coconut Palm Tree Pack/Materials/Coconut_Palm_Tree_normalspec.mat
 !/Assets/Coconut Palm Tree Pack/Materials/Coconut_Palm_Tree_normalspec.mat.meta
 !/Assets/Coconut Palm Tree Pack/Models.meta
 !/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree01_AFS.asset
 !/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree01_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree02_AFS.asset
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree02_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree03_AFS.asset
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree03_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree05_AFS.asset
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree05_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree06_AFS.asset
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree06_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree07_AFS.asset
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree07_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree08_AFS.asset
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree08_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree09_AFS.asset
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree09_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree10_AFS.asset
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree10_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree11_AFS.asset
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree11_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree12_AFS.asset
+!/Assets/Coconut Palm Tree Pack/Models/Coconut_Palm_Tree12_AFS.asset.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree01_AFS.prefab
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree01_AFS.prefab.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree02_AFS.prefab
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree02_AFS.prefab.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree03_AFS.prefab
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree03_AFS.prefab.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree05_AFS.prefab
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree05_AFS.prefab.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree06_AFS.prefab
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree06_AFS.prefab.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree07_AFS.prefab
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree07_AFS.prefab.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree08_AFS.prefab
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree08_AFS.prefab.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree09_AFS.prefab
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree09_AFS.prefab.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree10_AFS.prefab
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree10_AFS.prefab.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree11_AFS.prefab
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree11_AFS.prefab.meta
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree12_AFS.prefab
+!/Assets/Coconut Palm Tree Pack/Prefabs/AFS/Coconut_Palm_Tree12_AFS.prefab.meta
 !/Assets/Coconut Palm Tree Pack/Textures.meta
+!/Assets/Coconut Palm Tree Pack/Textures/Coconut_Palm_Tree_AFS.psd
+!/Assets/Coconut Palm Tree Pack/Textures/Coconut_Palm_Tree_AFS.psd.meta
 !/Assets/Coconut Palm Tree Pack/Textures/Coconut_Palm_Tree_diffuse.psd
 !/Assets/Coconut Palm Tree Pack/Textures/Coconut_Palm_Tree_diffuse.psd.meta
 !/Assets/FlipGameDev/Terrain&GrassPack.meta
@@ -149,6 +206,12 @@ InitTestScene*.unity*
 !/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Materials.meta
 !/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Materials/Grass_AlbedoTransparency.mat
 !/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Materials/Grass_AlbedoTransparency.mat.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Mud_AlbedoTransparency.png
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Mud_AlbedoTransparency.png.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Rockwall_AlbedoTransparency.png
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Rockwall_AlbedoTransparency.png.meta
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Rockwall_Normal.png
+!/Assets/FlipGameDev/Terrain&GrassPack/Art/Textures/Terrain_Textures/Rockwall_Normal.png.meta
 !/Assets/FlipGameDev/Terrain&GrassPack/Scripts.meta
 !/Assets/FlipGameDev/Terrain&GrassPack/Scripts/DayNightBrain.cs
 !/Assets/FlipGameDev/Terrain&GrassPack/Scripts/DayNightBrain.cs.meta
@@ -180,14 +243,6 @@ InitTestScene*.unity*
 !/Assets/JusticeScale/Demo/Scripts/DragAndDrop.cs.meta
 !/Assets/JusticeScale/Demo/Scripts/SliderWeight.cs
 !/Assets/JusticeScale/Demo/Scripts/SliderWeight.cs.meta
-!/Assets/JusticeScale/Materials.meta
-!/Assets/JusticeScale/Materials/Scale Material.mat
-!/Assets/JusticeScale/Materials/Scale Material.mat.meta
-!/Assets/JusticeScale/Materials/ScaleAlbedo.mat
-!/Assets/JusticeScale/Materials/ScaleAlbedo.mat.meta
-!/Assets/JusticeScale/Models.meta
-!/Assets/JusticeScale/Models/Scale.fbx
-!/Assets/JusticeScale/Models/Scale.fbx.meta
 !/Assets/JusticeScale/Scripts.meta
 !/Assets/JusticeScale/Scripts/ScaleBeamRotation.cs
 !/Assets/JusticeScale/Scripts/ScaleBeamRotation.cs.meta
@@ -203,9 +258,6 @@ InitTestScene*.unity*
 !/Assets/JusticeScale/Scripts/UI.meta
 !/Assets/JusticeScale/Scripts/UI/ScaleUI.cs
 !/Assets/JusticeScale/Scripts/UI/ScaleUI.cs.meta
-!/Assets/JusticeScale/Textures.meta
-!/Assets/JusticeScale/Textures/ScaleAlbedo.png
-!/Assets/JusticeScale/Textures/ScaleAlbedo.png.meta
 !/Assets/NekoLegends/Food.meta
 !/Assets/NekoLegends/Food/Fruits.meta
 !/Assets/NekoLegends/Food/Fruits/MaterialsAndTextures.meta
@@ -272,15 +324,6 @@ InitTestScene*.unity*
 !/Assets/PolygonPi/FenceLayout/Editor.meta
 !/Assets/PolygonPi/FenceLayout/Editor/FenceLayoutEditor.cs
 !/Assets/PolygonPi/FenceLayout/Editor/FenceLayoutEditor.cs.meta
-!/Assets/PolygonPi/FenceLayout/Example.meta
-!/Assets/PolygonPi/FenceLayout/Example/FencePanel.prefab
-!/Assets/PolygonPi/FenceLayout/Example/FencePanel.prefab.meta
-!/Assets/PolygonPi/FenceLayout/Example/FencePost.prefab
-!/Assets/PolygonPi/FenceLayout/Example/FencePost.prefab.meta
-!/Assets/PolygonPi/FenceLayout/Example/WoodMat.mat
-!/Assets/PolygonPi/FenceLayout/Example/WoodMat.mat.meta
-!/Assets/PolygonPi/FenceLayout/Example/wood.png
-!/Assets/PolygonPi/FenceLayout/Example/wood.png.meta
 !/Assets/PolygonPi/FenceLayout/FenceLayout.cs
 !/Assets/PolygonPi/FenceLayout/FenceLayout.cs.meta
 !/Assets/Starter Assets/Editor.meta
@@ -336,3 +379,30 @@ InitTestScene*.unity*
 !/Assets/Starter Assets/Sample/Environment/Art/Materials.meta
 !/Assets/Starter Assets/Sample/Environment/Art/Materials/GreyBlue_Mat.mat
 !/Assets/Starter Assets/Sample/Environment/Art/Materials/GreyBlue_Mat.mat.meta
+!/Assets/Stylized NPC - Peasant Nolant/Animator.meta
+!/Assets/Stylized NPC - Peasant Nolant/Animator/Animator Controller.controller
+!/Assets/Stylized NPC - Peasant Nolant/Animator/Animator Controller.controller.meta
+!/Assets/Stylized NPC - Peasant Nolant/Materials.meta
+!/Assets/Stylized NPC - Peasant Nolant/Materials/Peasant Nolant Blue.mat
+!/Assets/Stylized NPC - Peasant Nolant/Materials/Peasant Nolant Blue.mat.meta
+!/Assets/Stylized NPC - Peasant Nolant/Materials/Peasant Nolant Brown.mat
+!/Assets/Stylized NPC - Peasant Nolant/Materials/Peasant Nolant Brown.mat.meta
+!/Assets/Stylized NPC - Peasant Nolant/Materials/Peasant Nolant Green.mat
+!/Assets/Stylized NPC - Peasant Nolant/Materials/Peasant Nolant Green.mat.meta
+!/Assets/Stylized NPC - Peasant Nolant/Materials/Peasant Nolant Yellow.mat
+!/Assets/Stylized NPC - Peasant Nolant/Materials/Peasant Nolant Yellow.mat.meta
+!/Assets/Stylized NPC - Peasant Nolant/Models.meta
+!/Assets/Stylized NPC - Peasant Nolant/Models/Peasant Nolant(Free Version).fbx
+!/Assets/Stylized NPC - Peasant Nolant/Models/Peasant Nolant(Free Version).fbx.meta
+!/Assets/Stylized NPC - Peasant Nolant/Prefabs.meta
+!/Assets/Stylized NPC - Peasant Nolant/Prefabs/Peasant Nolant Blue(Free Version).prefab
+!/Assets/Stylized NPC - Peasant Nolant/Prefabs/Peasant Nolant Blue(Free Version).prefab.meta
+!/Assets/Stylized NPC - Peasant Nolant/Textures.meta
+!/Assets/Stylized NPC - Peasant Nolant/Textures/Peasant Nolant Blue.png
+!/Assets/Stylized NPC - Peasant Nolant/Textures/Peasant Nolant Blue.png.meta
+!/Assets/Stylized NPC - Peasant Nolant/Textures/Peasant Nolant Brown.png
+!/Assets/Stylized NPC - Peasant Nolant/Textures/Peasant Nolant Brown.png.meta
+!/Assets/Stylized NPC - Peasant Nolant/Textures/Peasant Nolant Green.png
+!/Assets/Stylized NPC - Peasant Nolant/Textures/Peasant Nolant Green.png.meta
+!/Assets/Stylized NPC - Peasant Nolant/Textures/Peasant Nolant Yellow.png
+!/Assets/Stylized NPC - Peasant Nolant/Textures/Peasant Nolant Yellow.png.meta

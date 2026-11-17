@@ -2,12 +2,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 // Coloque este script no PlayerCapsule.
-// O jogador mira num abacaxi (centro da tela), aperta E para pegar,
+// O jogador mira num abacaxi ou peso (centro da tela), aperta E para pegar,
 // e aperta E de novo para soltar (o clique esquerdo do mouse faz o mesmo). Mirando num botão (ex.: "Verificar"),
-// o E aciona o botão.
+// o E aciona o botão. Mirando num sino, o E toca o sino.
 public class PegarObjeto : MonoBehaviour
 {
-    [Tooltip("Distância máxima para alcançar um abacaxi")]
+    [Tooltip("Distância máxima para alcançar um abacaxi ou peso")]
     public float alcance = 3f;
     [Tooltip("Distância à frente da câmera em que o abacaxi fica segurado")]
     public float distanciaSegurar = 1.5f;
@@ -20,7 +20,16 @@ public class PegarObjeto : MonoBehaviour
     [Tooltip("Distância máxima para acionar um botão com a mira")]
     public float alcanceBotao = 6f;
 
+    [Header("Sombra embaixo do objeto segurado")]
+    [Tooltip("Material da sombra (Assets/Materiais/SombraAbacaxi). Vazio = sem sombra")]
+    public Material materialSombra;
+    [Tooltip("Tamanho da sombra em relação à largura do objeto")]
+    public float tamanhoSombra = 1.3f;
+    [Tooltip("Até que distância para baixo a sombra aparece")]
+    public float alcanceSombra = 5f;
+
     Camera cam;
+    Transform sombra;
     Rigidbody segurado;
     Collider colliderSegurado;
     Collider colliderJogador;
@@ -30,6 +39,62 @@ public class PegarObjeto : MonoBehaviour
     {
         cam = Camera.main;
         colliderJogador = GetComponent<Collider>(); // o CharacterController do jogador
+        CriarSombra();
+    }
+
+    // Um quadrado com a textura de círculo escuro, sem collider
+    void CriarSombra()
+    {
+        if (materialSombra == null) return;
+        GameObject quad = GameObject.CreatePrimitive(PrimitiveType.Quad);
+        quad.name = "Sombra do objeto segurado";
+        Destroy(quad.GetComponent<Collider>());
+        Renderer r = quad.GetComponent<Renderer>();
+        r.sharedMaterial = materialSombra;
+        r.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
+        r.receiveShadows = false;
+        sombra = quad.transform;
+        sombra.gameObject.SetActive(false);
+    }
+
+    // Coloca a sombra no que estiver logo abaixo do objeto segurado (bancada, chão, balança...)
+    void LateUpdate()
+    {
+        if (sombra == null) return;
+        if (segurado == null)
+        {
+            if (sombra.gameObject.activeSelf) sombra.gameObject.SetActive(false);
+            return;
+        }
+
+        // Usa a posição interpolada (a mesma que aparece na tela) para a sombra não tremer
+        Vector3 origem = segurado.transform.TransformPoint(segurado.centerOfMass);
+        RaycastHit[] acertos = Physics.RaycastAll(origem, Vector3.down, alcanceSombra, ~0, QueryTriggerInteraction.Ignore);
+        float maisPerto = float.MaxValue;
+        RaycastHit chao = default;
+        foreach (var acerto in acertos)
+        {
+            // Ignora o próprio objeto segurado e o jogador
+            if (acerto.rigidbody == segurado || acerto.collider == colliderJogador) continue;
+            if (acerto.distance < maisPerto) { maisPerto = acerto.distance; chao = acerto; }
+        }
+
+        if (maisPerto == float.MaxValue)
+        {
+            sombra.gameObject.SetActive(false);
+            return;
+        }
+
+        // Largura do objeto (maior entre X e Z) define o tamanho da sombra
+        Bounds b = colliderSegurado.bounds;
+        foreach (var c in segurado.GetComponentsInChildren<Collider>())
+            if (!c.isTrigger) b.Encapsulate(c.bounds);
+        float largura = Mathf.Max(b.size.x, b.size.z) * tamanhoSombra;
+
+        sombra.gameObject.SetActive(true);
+        sombra.position = chao.point + chao.normal * 0.01f; // um pouquinho acima para não piscar
+        sombra.rotation = Quaternion.LookRotation(-chao.normal);
+        sombra.localScale = new Vector3(largura, largura, 1f);
     }
 
     void Update()
@@ -64,6 +129,15 @@ public class PegarObjeto : MonoBehaviour
                 botao.Clicar();
                 return true;
             }
+
+            // Sino: mirar no sino ou na cordinha toca o sino
+            Sino sino = acerto.collider.GetComponentInParent<Sino>();
+            if (sino != null)
+            {
+                Debug.Log("PegarObjeto: tocou o sino '" + sino.name + "'");
+                sino.Tocar();
+                return true;
+            }
             // Para no primeiro objeto sólido (uma parede bloqueia o clique)
             if (!acerto.collider.isTrigger)
             {
@@ -95,11 +169,18 @@ public class PegarObjeto : MonoBehaviour
             return;
         }
 
-        Abacaxi abacaxi = hit.collider.GetComponentInParent<Abacaxi>();
+        // Pode pegar abacaxis e pesos de ferro
+        MonoBehaviour objeto = hit.collider.GetComponentInParent<Abacaxi>();
+        if (objeto == null) objeto = hit.collider.GetComponentInParent<PesoFerro>();
         Rigidbody rb = hit.rigidbody;
-        if (abacaxi == null)
+        if (objeto == null)
         {
-            Debug.Log("PegarObjeto: acertou '" + hit.collider.name + "', que não tem o script Abacaxi");
+            Debug.Log("PegarObjeto: acertou '" + hit.collider.name + "', que não é abacaxi nem peso");
+            return;
+        }
+        if (objeto is Abacaxi abacaxi && abacaxi.travado)
+        {
+            Debug.Log("PegarObjeto: '" + abacaxi.name + "' já foi entregue numa barraca concluída");
             return;
         }
         if (rb == null)
@@ -107,7 +188,7 @@ public class PegarObjeto : MonoBehaviour
             Debug.Log("PegarObjeto: acertou '" + hit.collider.name + "', mas ele não tem Rigidbody");
             return;
         }
-        Debug.Log("PegarObjeto: pegou '" + abacaxi.name + "'");
+        Debug.Log("PegarObjeto: pegou '" + objeto.name + "'");
 
         segurado = rb;
         colliderSegurado = hit.collider;

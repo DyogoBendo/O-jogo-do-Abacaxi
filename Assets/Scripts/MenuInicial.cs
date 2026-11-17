@@ -3,23 +3,20 @@ using UnityEngine.SceneManagement;
 
 // Coloque este script num objeto vazio na cena do menu.
 // Ligue as funções nos OnClick dos botões:
-//   Iniciar  -> MenuInicial.Iniciar
+//   Iniciar  -> MenuInicial.Iniciar   (abre o vídeo de abertura e, depois dele, o jogo)
 //   Sair     -> MenuInicial.Sair
-//   Começar  -> MenuInicial.Comecar   (no painel de instruções)
-//   Voltar   -> MenuInicial.Voltar    (opcional, no painel de instruções)
 public class MenuInicial : MonoBehaviour
 {
     [Tooltip("Painel com os botões Iniciar e Sair")]
     public GameObject painelMenu;
-    [Tooltip("Painel com a explicação do jogo e o botão Começar")]
-    public GameObject painelInstrucoes;
     [Tooltip("Nome exato da cena do jogo")]
     public string cenaDoJogo = "Feira";
+    [Tooltip("Cena do vídeo de abertura, tocada antes do jogo. Deixe vazio para ir direto ao jogo")]
+    public string cenaDoVideo = "GravacaoVideo";
 
     void Start()
     {
-        painelMenu.SetActive(true);
-        painelInstrucoes.SetActive(false);
+        if (painelMenu != null) painelMenu.SetActive(true);
 
         // Libera o mouse para clicar nos botões (o jogo trava o cursor)
         Cursor.lockState = CursorLockMode.None;
@@ -28,22 +25,15 @@ public class MenuInicial : MonoBehaviour
 
     public void Iniciar()
     {
-        painelMenu.SetActive(false);
-        painelInstrucoes.SetActive(true);
-    }
-
-    public void Voltar()
-    {
-        painelInstrucoes.SetActive(false);
-        painelMenu.SetActive(true);
-    }
-
-    public void Comecar()
-    {
         // Prende e esconde o mouse para o jogo em primeira pessoa
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        SceneManager.LoadScene(cenaDoJogo);
+
+        // Primeiro o vídeo de abertura (ele mesmo carrega o jogo quando termina)
+        if (!string.IsNullOrEmpty(cenaDoVideo))
+            SceneManager.LoadScene(cenaDoVideo);
+        else
+            SceneManager.LoadScene(cenaDoJogo);
     }
 
     public void Sair()

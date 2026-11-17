@@ -7,10 +7,17 @@ using UnityEngine.SceneManagement;
 // Ligue as funções nos OnClick dos botões:
 //   Recomeçar -> TelaFinal.Recomecar
 //   Sair      -> TelaFinal.Sair
+//   Próxima   -> TelaFinal.ProximaFase
 public class TelaFinal : MonoBehaviour
 {
     [Tooltip("Arraste o PlayerCapsule: os controles dele param quando a tela aparece")]
     public GameObject jogador;
+
+    [Header("Próxima fase")]
+    [Tooltip("Nome exato da cena da próxima fase. Deixe vazio na última fase")]
+    public string proximaFase = "";
+    [Tooltip("O botão \"Próxima fase\": fica escondido quando não há próxima fase")]
+    public GameObject botaoProximaFase;
 
     void OnEnable()
     {
@@ -22,6 +29,18 @@ public class TelaFinal : MonoBehaviour
         if (jogador != null)
             foreach (var script in jogador.GetComponents<MonoBehaviour>())
                 script.enabled = false;
+    }
+
+    void Start()
+    {
+        // Na última fase (ou se a cena não estiver no Build Settings), esconde o botão
+        if (botaoProximaFase != null)
+            botaoProximaFase.SetActive(TemProximaFase());
+    }
+
+    bool TemProximaFase()
+    {
+        return !string.IsNullOrEmpty(proximaFase) && Application.CanStreamedLevelBeLoaded(proximaFase);
     }
 
     void Update()
@@ -36,6 +55,14 @@ public class TelaFinal : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ProximaFase()
+    {
+        if (!TemProximaFase()) return;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        SceneManager.LoadScene(proximaFase);
     }
 
     public void Sair()
