@@ -175,11 +175,10 @@ public class BalancaPesagem : MonoBehaviour
         return total;
     }
 
-    // O PegarObjeto desliga a gravidade do que está segurando: ainda não está apoiado no prato
+    // Se o jogador ainda está segurando, o objeto não está apoiado no prato
     static bool NaMaoDoJogador(MonoBehaviour objeto)
     {
-        Rigidbody corpo = objeto.GetComponentInParent<Rigidbody>();
-        return corpo != null && !corpo.isKinematic && !corpo.useGravity;
+        return ObjetoNaMao.Esta(objeto);
     }
 
     void AtualizarIndicador()

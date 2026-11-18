@@ -3,15 +3,19 @@ using UnityEngine.SceneManagement;
 
 // Coloque este script no painel de parabéns.
 // Quando o painel aparece, ele para o jogador e libera o mouse para clicar nos botões.
-// No campo "Jogador", arraste o PlayerCapsule.
+// No VR, o painel (Canvas em World Space) aparece na frente do jogador e os botões
+// são apertados com o raio do controle + gatilho.
+// No campo "Jogador", arraste o JogadorVR (ou o PlayerCapsule, no PC).
 // Ligue as funções nos OnClick dos botões:
 //   Recomeçar -> TelaFinal.Recomecar
 //   Sair      -> TelaFinal.Sair
 //   Próxima   -> TelaFinal.ProximaFase
 public class TelaFinal : MonoBehaviour
 {
-    [Tooltip("Arraste o PlayerCapsule: os controles dele param quando a tela aparece")]
+    [Tooltip("Arraste o JogadorVR (ou o PlayerCapsule, no PC): ele para de andar quando a tela aparece")]
     public GameObject jogador;
+    [Tooltip("VR: distância (metros) em que o painel aparece na frente do jogador")]
+    public float distanciaDoJogador = 1.8f;
 
     [Header("Próxima fase")]
     [Tooltip("Nome exato da cena da próxima fase. Deixe vazio na última fase")]
@@ -25,7 +29,18 @@ public class TelaFinal : MonoBehaviour
         // estiver visível na cena quando o jogo começa)
         if (GameManager.instancia == null || !GameManager.instancia.FeiraAberta) return;
 
-        // Desliga os scripts do jogador (andar, olhar, pegar abacaxi)
+        // VR: o jogador para de andar, e o painel aparece na frente dele
+        Transform cabeca = JogadorVR.Cabeca(jogador);
+        if (cabeca != null)
+        {
+            JogadorVR.Travar(jogador, true);
+            Canvas canvas = GetComponentInParent<Canvas>();
+            if (canvas != null && canvas.renderMode == RenderMode.WorldSpace)
+                JogadorVR.ColocarNaFrente(canvas.rootCanvas.transform, cabeca, distanciaDoJogador);
+            return;
+        }
+
+        // PC: desliga os scripts do jogador (andar, olhar, pegar abacaxi)
         if (jogador != null)
             foreach (var script in jogador.GetComponents<MonoBehaviour>())
                 script.enabled = false;

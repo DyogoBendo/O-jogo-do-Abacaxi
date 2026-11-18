@@ -108,9 +108,9 @@ public class Barraca : MonoBehaviour
     static bool EstaParado(Abacaxi abacaxi)
     {
         if (abacaxi == null) return true;
+        if (ObjetoNaMao.Esta(abacaxi)) return false; // ainda está na mão do jogador
         Rigidbody corpo = abacaxi.GetComponentInParent<Rigidbody>();
         if (corpo == null || corpo.isKinematic) return true;
-        if (!corpo.useGravity) return false; // o PegarObjeto desliga a gravidade enquanto segura
         // Quase parado já basta (não espera o abacaxi parar de balançar/girar)
         return corpo.linearVelocity.sqrMagnitude < 0.25f;
     }
@@ -183,6 +183,11 @@ public class Barraca : MonoBehaviour
         foreach (var abacaxi in abacaxisNaArea.Keys)
         {
             abacaxi.travado = true;
+
+            // VR: desliga o "pegável" para o controle não conseguir mais segurar este abacaxi
+            var pegavel = abacaxi.GetComponentInParent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+            if (pegavel != null) pegavel.enabled = false;
+
             Rigidbody corpo = abacaxi.GetComponentInParent<Rigidbody>();
             if (corpo != null)
             {

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 // A câmera passa suavemente pelos pontos da lista, chegando em cada um
 // no tempo indicado (em segundos), e toca a narração ao começar.
 // Quando o passeio e a narração terminam, carrega a cena do jogo (se houver uma configurada).
+// VR: a câmera filma para uma Render Texture mostrada num telão; o JogadorVR assiste parado.
 public class PasseioCamera : MonoBehaviour
 {
     [Header("Depois do vídeo")]
@@ -15,10 +16,29 @@ public class PasseioCamera : MonoBehaviour
     [Tooltip("Segundos de espera depois que o vídeo termina, antes de trocar de cena")]
     public float esperaNoFinal = 1f;
 
-    [Tooltip("Se marcado, o jogador pode pular o vídeo com Espaço, Enter ou clique")]
+    [Tooltip("Se marcado, o jogador pode pular o vídeo com Espaço, Enter, clique ou o gatilho do controle (VR)")]
     public bool permitirPular = true;
 
+    [Header("VR (telão)")]
+    [Tooltip("Opcional: o JogadorVR que assiste ao vídeo no telão. Ele fica parado (não anda) durante o vídeo")]
+    public GameObject jogadorVR;
+
     bool trocandoDeCena;
+    InputAction gatilhoVR;
+
+    void OnEnable()
+    {
+        // Gatilho de qualquer um dos controles do Quest (para pular o vídeo)
+        gatilhoVR = new InputAction("Pular vídeo VR", InputActionType.Button);
+        gatilhoVR.AddBinding("<XRController>{LeftHand}/{TriggerButton}");
+        gatilhoVR.AddBinding("<XRController>{RightHand}/{TriggerButton}");
+        gatilhoVR.Enable();
+    }
+
+    void OnDisable()
+    {
+        if (gatilhoVR != null) { gatilhoVR.Disable(); gatilhoVR.Dispose(); gatilhoVR = null; }
+    }
 
     [System.Serializable]
     public class Parada
@@ -41,6 +61,7 @@ public class PasseioCamera : MonoBehaviour
     {
         inicio = Time.time;
         if (narracao != null) narracao.Play();
+        JogadorVR.Travar(jogadorVR, true); // quem assiste no telão não sai andando
         if (paradas.Length > 0) IrPara(paradas[0].ponto, paradas[0].ponto, 0f);
     }
 
@@ -75,7 +96,8 @@ public class PasseioCamera : MonoBehaviour
         var teclado = Keyboard.current;
         var mouse = Mouse.current;
         return (teclado != null && (teclado.spaceKey.wasPressedThisFrame || teclado.enterKey.wasPressedThisFrame))
-            || (mouse != null && mouse.leftButton.wasPressedThisFrame);
+            || (mouse != null && mouse.leftButton.wasPressedThisFrame)
+            || (gatilhoVR != null && gatilhoVR.WasPressedThisFrame());
     }
 
     void IrParaOJogo()

@@ -32,9 +32,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] esconderAoAbrir;
 
     [Header("Virar o jogador para o portão (opcional)")]
-    [Tooltip("Arraste o PlayerCapsule")]
+    [Tooltip("Arraste o JogadorVR (ou o PlayerCapsule, na versão de PC)")]
     public GameObject jogador;
-    [Tooltip("Arraste o PlayerCameraRoot (dentro do PlayerCapsule)")]
+    [Tooltip("Só na versão de PC: o PlayerCameraRoot (dentro do PlayerCapsule). No VR fica vazio")]
     public Transform cameraDoJogador;
     [Tooltip("Para onde o jogador olha. Se ficar vazio, olha para o portão")]
     public Transform pontoParaOlhar;
@@ -117,6 +117,32 @@ public class GameManager : MonoBehaviour
     {
         Transform alvo = pontoParaOlhar != null ? pontoParaOlhar
                        : (portao != null ? portao.transform : null);
+
+        // Jogador VR (XR Origin): gira só o corpo, em volta da cabeça.
+        // Em VR não dá para inclinar a cabeça de ninguém à força (causa enjoo).
+        var origemVR = jogador != null ? jogador.GetComponent<Unity.XR.CoreUtils.XROrigin>() : null;
+        if (origemVR != null && alvo != null)
+        {
+            JogadorVR.Travar(jogador, true); // para de andar e girar com os analógicos
+
+            Transform cabeca = origemVR.Camera.transform;
+            Vector3 olhar = cabeca.forward; olhar.y = 0f;
+            Vector3 direcao = alvo.position - cabeca.position; direcao.y = 0f;
+            float anguloTotal = Vector3.SignedAngle(olhar, direcao, Vector3.up);
+
+            float girado = 0f;
+            for (float t = 0f; t < 1f; t += Time.deltaTime / duracaoGiro)
+            {
+                float alvoAgora = anguloTotal * Mathf.SmoothStep(0f, 1f, t);
+                origemVR.RotateAroundCameraUsingOriginUp(alvoAgora - girado);
+                girado = alvoAgora;
+                yield return null;
+            }
+            origemVR.RotateAroundCameraUsingOriginUp(anguloTotal - girado);
+
+            if (portao != null) portao.Abrir();
+            yield break;
+        }
 
         if (jogador != null && cameraDoJogador != null && alvo != null)
         {
