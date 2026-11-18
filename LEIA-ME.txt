@@ -1,0 +1,78 @@
+O JOGO DO ABACAXI - VERSAO VR
+=============================
+
+Como baixar e abrir o projeto no seu computador.
+
+
+1. ANTES DE BAIXAR
+------------------
+- Instale o Git LFS: https://git-lfs.com
+  Ele e obrigatorio. Sem ele, as texturas, os modelos e os audios chegam
+  como arquivos de texto pequenos, e o projeto abre todo rosa e sem som.
+
+- Instale pelo Unity Hub o Unity 6000.6.1f1 (exatamente essa versao).
+  Na instalacao, marque o modulo "Android Build Support" (com OpenJDK e
+  Android SDK & NDK Tools). Ele e necessario para gerar o APK do Quest.
+
+
+2. BAIXAR
+---------
+No terminal (Git Bash ou PowerShell), dentro da pasta onde quer o projeto:
+
+    git lfs install
+    git clone -b vr https://github.com/DyogoBendo/O-jogo-do-Abacaxi
+
+O "-b vr" ja baixa a branch da versao VR. A branch "main" tem a versao
+entregue antes (desktop, sem VR).
+
+
+3. ABRIR NO UNITY
+-----------------
+- No Unity Hub: Add > Add project from disk > escolha a pasta
+  "O-jogo-do-Abacaxi".
+- A primeira abertura demora: o Unity recria a pasta Library e baixa
+  sozinho os pacotes (XR Interaction Toolkit, OpenXR etc.).
+- Se aparecer erro no pacote "MCP for Unity" (com.coplaydev.unity-mcp),
+  pode remover pelo Window > Package Manager. Ele nao e necessario para
+  o jogo.
+
+
+4. TESTAR NO PC (SEM OCULOS)
+----------------------------
+- Abra a cena Assets/Scenes/Menu e aperte Play.
+- O XR Device Simulator aparece sozinho:
+    T / Y ............. escolhem a mao esquerda / direita
+    mouse ............. move a mao
+    clique esquerdo ... gatilho (pega, solta e aperta botoes)
+- Esc volta ao menu.
+
+
+5. TESTAR COM O QUEST PELO CABO (QUEST LINK)
+--------------------------------------------
+- Em Edit > Project Settings > XR Plug-in Management > XR Interaction
+  Toolkit, desmarque "Use XR Device Simulator in scenes".
+- Conecte o Quest com o Link ligado e aperte Play.
+
+
+6. GERAR O APK PARA O QUEST
+---------------------------
+- File > Build Profiles > escolha o perfil Android.
+- Com o Quest conectado e o modo desenvolvedor ativo, use
+  "Build And Run" para instalar direto no oculos.
+
+
+CONTROLES NO OCULOS
+-------------------
+- Analogico esquerdo: anda
+- Analogico direito: gira
+- Gatilho: pega / solta objetos e aperta botoes
+- Segurar o botao de menu do controle esquerdo por 1 s: volta ao menu
+
+
+SOBRE OS ASSETS
+---------------
+Nem tudo dos pacotes da Asset Store esta no Git: foi so o que o jogo usa
+(cenas de demonstracao e o "Christmas pack" ficaram de fora). O projeto
+abre e roda completo assim. Se for usar algum asset novo de um pacote
+que nao esta no Git, peca o pacote para quem tem e lembre de liberar o
+arquivo no .gitignore (ou use "git add -f arquivo arquivo.meta").
