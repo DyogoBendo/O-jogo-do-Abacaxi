@@ -7,13 +7,13 @@ Responda e comente o código em português. O usuário ainda é iniciante em pro
 
 - Unity **6000.6.1f1** (Unity 6), pipeline **URP**. Todos da equipe usam exatamente essa versão.
 - Input System novo (`UnityEngine.InputSystem`), não o `Input` antigo.
-- Repositório no GitHub. **Os assets grandes não estão no Git** (foram passados à parte), então não presuma que tudo em `Assets/` está versionado.
+- Repositório no GitHub. **Tudo o que as cenas do build usam está versionado** (conferido pelas dependências das cinco cenas). Ficam de fora só arquivos não usados dos pacotes da Asset Store (cenas de demonstração etc., pelo `.gitignore`), então não presuma que tudo em `Assets/` está no Git. Os pacotes do Unity vêm pelo `Packages/manifest.json`.
 - A versão entregue do trabalho está na tag `entrega-trabalho2`. O trabalho novo é feito no branch `vr`. Confira o branch ativo antes de mudar algo.
 - O MCP for Unity (CoplayDev) está instalado: com o Unity aberto e o servidor ligado (Window → MCP for Unity), dá para mexer na cena pelas ferramentas do UnityMCP. Faça uma etapa de cada vez e peça para o usuário conferir no editor.
 
 ## A ideia nova do jogo
 
-O avô está cansado e pede ajuda ao neto (o jogador). Há **quatro barracas** (A, B, C e D), cada uma com uma expressão; o valor de x é o peso dos abacaxis daquela barraca. No centro, uma **balança antiga de dois pratos**: o jogador coloca **pesos de ferro de 1 a 5 kg** de um lado e testa abacaxis do outro até nivelar. Leva os abacaxis certos até a barraca e **puxa a cordinha do sino** para conferir.
+O avô está cansado e pede ajuda ao neto (o jogador). Há **quatro barracas** (A, B, C e D), cada uma com uma expressão; o valor de x é o peso dos abacaxis daquela barraca. No centro, uma **balança antiga de dois pratos**: o jogador coloca **pesos de ferro de 1 a 5 kg** de um lado e testa abacaxis do outro até nivelar. Leva os abacaxis certos até o balcão da barraca, e **a barraca confere sozinha** quando eles ficam soltos e parados ali (não há sino).
 
 | Barraca | Expressão | x |
 | --- | --- | --- |
@@ -27,7 +27,7 @@ Decisões:
 - **2 abacaxis por barraca.** Barracas em **qualquer ordem**.
 - Ao concluir uma barraca, os abacaxis dela ficam presos e não podem mais ser pegos.
 - Com as quatro barracas completas: o jogador é virado para o portão, a porta abre, a música da feira troca pela música de fim e, depois de alguns segundos, aparece a tela de parabéns (Recomeçar / Sair).
-- **Vídeo de abertura** narrado: só a voz do avô, câmera passeando pela feira (portão, quatro barracas, balança e pesos, sino, portão). Gravado no Unity com o `PasseioCamera` e o Unity Recorder, numa cena `GravacaoVideo` (cópia da Feira), e exibido num telão dentro do cenário (para evitar enjoo em VR).
+- **Vídeo de abertura** narrado: só a voz do avô, câmera passeando pela feira (portão, quatro barracas, balança e pesos, balcão de uma barraca, portão). Gravado no Unity com o `PasseioCamera` e o Unity Recorder, numa cena `GravacaoVideo` (cópia da Feira), e exibido num telão dentro do cenário (para evitar enjoo em VR).
 - **Versão VR (feita no branch `vr`):** veja a seção "Versão VR" abaixo. Óculos: **Meta Quest 3 / 3S** (APK Android). Sem teleporte.
 
 ### Roteiro do vídeo (~1 min 10 s; tempos aproximados, ajustar à narração gravada)
@@ -38,7 +38,9 @@ Decisões:
 | 0:10–0:30 | Passa pelas barracas A, B, C e D, aproximando de cada placa | Cada barraca tem uma conta; o x é o peso dos abacaxis daquela barraca. |
 | 0:30–0:45 | Balança antiga e os pesos de 1 a 5 kg | Os abacaxis estão misturados; peso de um lado, abacaxi do outro; se ficar reta, o peso é igual. |
 | 0:45–0:52 | Placa da barraca D | Na última, talvez precise juntar dois pesos. |
-| 0:52–1:02 | Sino de uma barraca e a cordinha | Dois abacaxis por barraca; ao terminar, puxar a cordinha do sino. |
+| 0:52–1:02 | Balcão de uma barraca | Dois abacaxis por barraca; é só deixá-los no balcão que a barraca confere sozinha. |
+
+> O roteiro original falava em puxar a cordinha de um sino, mas o sino foi tirado do jogo. Se a narração já gravada ainda falar do sino, esse trecho precisa ser regravado.
 | 1:02–1:10 | Volta ao portão e escurece | Com as quatro prontas, a feira abre. |
 
 ## Versão VR
@@ -73,8 +75,8 @@ Jogador: Starter Assets – First Person (`PlayerCapsule`, `PlayerCameraRoot`, `
 | `PesoFerro` | cada peso de ferro | `peso` (int, kg) e texto do número gravado. |
 | `BalancaPesagem` | `Scale` da balança central | Soma o peso de cada prato (abacaxis e pesos), inclina o `Beam` e move `ChainsOriginLeft/Right`. Pratos com **Rigidbody cinemático**, movidos em `FixedUpdate` com `MovePosition`. `indicadorEquilibrio` opcional. |
 | `SensorPesagem` | trigger acima de cada prato | Avisa a balança quando um abacaxi ou peso entra/sai (`ladoEsquerdo` define o prato). |
-| `Barraca` | área trigger sobre o balcão de cada barraca | `pesoCerto` e `quantidadeNecessaria` (2). `Conferir()` (chamado pelo sino) verifica quantidade e pesos, mostra dicas, trava os abacaxis e avisa o `GameManager`. |
-| `Sino` | objeto do sino (`TreeToy_bell`) | `Tocar()`: som + balanço do `corpo` (`Toy_bell`); evento `aoTocar` ligado a `Barraca.Conferir`. Campo `cordinha` deixado vazio (sem puxão). |
+| `Barraca` | área trigger sobre o balcão de cada barraca | `pesoCerto` e `quantidadeNecessaria` (2). **Confere sozinha** no `Update`: quando os abacaxis da área estão soltos (fora da mão) e quase parados por `tempoParaConferir` segundos, chama `Conferir()`, que verifica quantidade e pesos, mostra dicas, toca som de acerto/erro, solta confete, trava os abacaxis e avisa o `GameManager`. Só confere de novo se os abacaxis na área mudarem. |
+| `Sino` | (não usado) | Sobra da versão antiga, em que o sino chamava `Barraca.Conferir`. Não há sino em nenhuma cena; o `PegarObjeto` (desktop) ainda referencia o script. |
 | `PegarObjeto` | `PlayerCapsule` | Raycast do centro da tela; pega/solta `Abacaxi` e `PesoFerro`; aciona `BotaoMira` e `Sino`. Não pega abacaxi `travado`. |
 | `BotaoMira` | botão de UI em World Space | BoxCollider do tamanho do botão; dispara o `onClick` quando o jogador mira e aperta. |
 | `GameManager` | objeto `GameManager` | Lista `barracas` (qualquer ordem), `BarracaConcluida()`, texto de progresso, abre a feira (vira o jogador, abre a porta, troca a música, mostra o painel de parabéns com atraso). |
