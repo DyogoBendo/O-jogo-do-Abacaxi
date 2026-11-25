@@ -1153,6 +1153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b90d97d86c96c514fac0c9a2af9dd0b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PontoDoLaser
+  mostrarNosBotoes: 1
   material: {fileID: 2100000, guid: 7d3d968ab261b324b881af0f90ce533e, type: 2}
   tamanho: 0.03
   crescerComDistancia: 1
@@ -1666,7 +1667,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

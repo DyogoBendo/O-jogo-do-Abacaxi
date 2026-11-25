@@ -88,7 +88,8 @@ Jogador: Starter Assets – First Person (`PlayerCapsule`, `PlayerCameraRoot`, `
 | `ObjetoNaMao` | (ajudante estático) | Diz se um abacaxi/peso está na mão (VR ou PC); usado pela balança e pela barraca. |
 | `ManterEmPe` | abacaxis e pesos (VR) | Não gira com o controle, trava a rotação enquanto está na mão e endireita ao pegar/soltar. |
 | `SombraObjetoSegurado` | `JogadorVR` | Sombra redonda embaixo do objeto segurado (versão VR da sombra do `PegarObjeto`). |
-| `PontoDoLaser` | `JogadorVR` | Bolinha vermelha na ponta do raio quando ele está num objeto pegável. |
+| `PontoDoLaser` | `JogadorVR` e XR Origin do Menu | Bolinha vermelha na ponta do raio quando ele está num objeto pegável ou num botão de UI (`mostrarNosBotoes`). |
+| `TelaControles` | `Game Manager` das três fases (`Feira`, `Feira 1`, `Feira 2`) | Botão Y do controle esquerdo (F1 no PC) abre/fecha o `CanvasControles` na frente do jogador; trava só os modos de locomoção que estavam ligados e religa os mesmos ao fechar. Com a tela fechada mostra o aviso `CanvasDicaControles` ("Y - TELA DE CONTROLES"), preso à câmera no Play (`posicaoDica`). Os textos usam `Materiais/TextoTelaControles` porque o material padrão da LiberationSans tem cor de face preta. |
 
 Removidos: `BalancaController` e `SensorPrato` (mecânica antiga com peso alvo e botão Verificar). Se ainda existirem no projeto, devem ser apagados.
 
